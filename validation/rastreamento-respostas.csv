@@ -1,0 +1,25 @@
+Nome,WhatsApp/Email,Fonte,Template_Usado,Data_Envio,Status,Resposta,Notes,Follow_up_1,Follow_up_2,Resultado_Final
+Pessoa 1,+55 11 9xxxx-xxxx,Conhecida,Template 1,2026-04-02,ENVIADO,SIM,Interessada,07/04,09/04,TRIAL_AGENDADA
+Pessoa 2,+55 11 9xxxx-xxxx,Conhecida,Template 1,2026-04-02,ENVIADO,NÃO,Disse não ter tempo,SKIP,,NÃO_INTERESSADA
+Pessoa 3,+55 11 9xxxx-xxxx,Conhecida,Template 1,2026-04-02,PENDENTE,,,Aguardando resposta,
+Pessoa 4,+55 11 9xxxx-xxxx,Conhecida,Template 1,2026-04-02,PENDENTE,,,Aguardando resposta,
+Pessoa 5,+55 11 9xxxx-xxxx,Conhecida,Template 1,2026-04-02,PENDENTE,,,Aguardando resposta,
+Pessoa 6,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,ENVIADO,SIM,Quer testar,07/04,09/04,TRIAL_ATIVA
+Pessoa 7,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,ENVIADO,TALVEZ,Perguntou o preço,04/04,08/04,FOLLOW_UP_2
+Pessoa 8,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,ENVIADO,NÃO,Já usa outro tool,SKIP,,NÃO_INTERESSADA
+Pessoa 9,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,PENDENTE,,,Aguardando resposta,
+Pessoa 10,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,PENDENTE,,,Aguardando resposta,
+Pessoa 11,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,PENDENTE,,,Aguardando resposta,
+Pessoa 12,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,PENDENTE,,,Aguardando resposta,
+Pessoa 13,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,PENDENTE,,,Aguardando resposta,
+Pessoa 14,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,PENDENTE,,,Aguardando resposta,
+Pessoa 15,+55 11 9xxxx-xxxx,Grupo WhatsApp,Template 2,2026-04-03,PENDENTE,,,Aguardando resposta,
+Pessoa 16,+55 11 9xxxx-xxxx,LinkedIn,Template 3,2026-04-04,ENVIADO,TALVEZ,Pediu mais info,05/04,,FOLLOW_UP_1
+Pessoa 17,+55 11 9xxxx-xxxx,LinkedIn,Template 3,2026-04-04,PENDENTE,,,Aguardando resposta,
+Pessoa 18,+55 11 9xxxx-xxxx,LinkedIn,Template 3,2026-04-04,PENDENTE,,,Aguardando resposta,
+Pessoa 19,+55 11 9xxxx-xxxx,LinkedIn,Template 3,2026-04-04,PENDENTE,,,Aguardando resposta,
+Pessoa 20,+55 11 9xxxx-xxxx,LinkedIn,Template 3,2026-04-04,PENDENTE,,,Aguardando resposta,
+,,,,,,,,,
+RESUMO,,,,,,,SIM: 2,TALVEZ: 2,NÃO: 2
+,,,,,,,RESPOSTA RATE: 30%,INTERESSE: 50%,
+,,,,,,,META: 5+ SIM,STATUS: ON TRACK,
