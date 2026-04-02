@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
-import { BrainIcon, ShieldIcon, ChartIcon, HeadsetIcon, StrifeIcon, SlackIcon, GmailIcon, ZapierIcon, AirtableIcon, NotionIcon, DiscordIcon, GitHubIcon } from './components/Icons';
+import { BrainIcon, ShieldIcon, ChartIcon, HeadsetIcon, StrifeIcon, SlackIcon, GmailIcon, ZapierIcon, DiscordIcon, GitHubIcon } from './components/Icons';
 
-// Componente de Counter Animado
 function Counter({ end, duration = 2 }: { end: number; duration?: number }) {
   const [count, setCount] = useState(0);
 
@@ -26,83 +25,130 @@ function Counter({ end, duration = 2 }: { end: number; duration?: number }) {
   return <span>{count}</span>;
 }
 
+function Accordion({ items }: { items: Array<{ title: string; content: string }> }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <div className="space-y-3 max-w-3xl mx-auto">
+      {items.map((item, i) => (
+        <div key={i} className="border border-[rgba(194,78,255,0.2)] rounded-lg overflow-hidden">
+          <button
+            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+            className="w-full px-6 py-4 text-left font-semibold text-white hover:bg-[rgba(194,78,255,0.08)] transition-all flex justify-between items-center"
+          >
+            {item.title}
+            <span className={`transform transition-transform ${openIndex === i ? 'rotate-180' : ''}`}>
+              ▼
+            </span>
+          </button>
+          {openIndex === i && (
+            <div className="px-6 py-4 bg-[rgba(194,78,255,0.05)] border-t border-[rgba(194,78,255,0.1)] text-[rgba(248,250,252,0.8)]">
+              {item.content}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#050505] text-[#f8fafc] overflow-x-hidden" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
-      {/* Background Blobs - Gradientes Roxo/Magenta */}
+    <main className="min-h-screen bg-[#0a0a0a] text-[#f8fafc] overflow-x-hidden" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+      {/* Subtle Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#9945ff]/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-0 w-[800px] h-[800px] bg-[#c24eff]/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-[#ff00ff]/15 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-[#0b1f3a]/25 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-1/3 w-96 h-96 bg-[#c24eff]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-40 right-1/4 w-80 h-80 bg-[#c24eff]/5 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Navigation */}
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative max-w-7xl mx-auto px-6 py-32 md:py-48 text-center" style={{ isolation: 'isolate' }}>
-        <div className="relative z-10">
-          {/* Main Heading */}
-          <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Automatize seu <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c24eff] via-[#ff00ff] to-[#ff0080]">fluxo de propostas</span>
+      {/* HERO SECTION */}
+      <section className="relative max-w-6xl mx-auto px-6 py-32 md:py-40 text-center" style={{ isolation: 'isolate' }}>
+        <div className="space-y-8">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
+            Gere propostas em menos de 2 minutos
           </h1>
 
-          {/* Lead */}
-          <p className="text-lg md:text-2xl text-[rgba(248,250,252,0.82)] mb-12 max-w-4xl mx-auto leading-relaxed font-light">
-            Gerador automático de propostas profissionais para freelancers. Templates inteligentes + Stripe, WhatsApp e CRM. <strong className="text-[#c24eff]">100% transparente, suporte 100% humano</strong>.
+          <p className="text-lg md:text-xl text-[rgba(248,250,252,0.75)] max-w-3xl mx-auto leading-relaxed">
+            HighFlow automatiza a criação de propostas profissionais. Integra com Stripe, WhatsApp, CRM. Suporte 100% humano, zero emojis.
           </p>
 
-          {/* Prova Social */}
-          <div className="flex flex-col items-center gap-6 mb-16">
-            <div className="flex items-center gap-3 justify-center">
-              <div className="flex -space-x-3">
-                {[1,2,3,4,5].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c24eff] to-[#ff0080] border-2 border-[#050505]"></div>
-                ))}
-              </div>
-              <div className="text-left">
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-500">★</span>
-                  ))}
-                </div>
-                <p className="text-xs text-[rgba(248,250,252,0.72)]"><strong>4.9/5</strong> - 500+ freelancers</p>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 justify-center mb-16">
-            <button className="inline-flex items-center justify-center min-h-[64px] px-10 py-4 bg-gradient-to-r from-[#c24eff] via-[#ff00ff] to-[#ff0080] text-white font-bold rounded-full hover:translate-y-[-3px] transition-all shadow-2xl hover:shadow-3xl text-lg hover:shadow-[#c24eff]/50">
-              Agendar demonstração
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <button className="px-8 py-3 bg-[#c24eff] text-white font-semibold rounded-lg hover:bg-[#b242e6] transition-all">
+              Começar Grátis
             </button>
-            <button className="inline-flex items-center justify-center min-h-[64px] px-10 py-4 border-2 border-[#c24eff] text-[#c24eff] font-bold rounded-full hover:bg-[rgba(194,78,255,0.15)] transition-all text-lg">
-              Ver dashboard
+            <button className="px-8 py-3 border-2 border-[#c24eff] text-[#c24eff] font-semibold rounded-lg hover:bg-[rgba(194,78,255,0.1)] transition-all">
+              Ver Demo
             </button>
           </div>
 
-          {/* Spacing */}
-          <div className="h-12"></div>
+          <div className="flex items-center justify-center gap-6 pt-8 text-sm text-[rgba(248,250,252,0.7)]">
+            <span>✓ Sem cartão</span>
+            <span>✓ Cancela quando quiser</span>
+            <span>✓ Suporte 24h</span>
+          </div>
         </div>
       </section>
 
-      {/* Integrações Section */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
-        <div className="grid gap-8 mb-16">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-[rgba(194,78,255,0.8)] mb-4">INTEGRAÇÕES</p>
-            <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-              Conecta com as ferramentas que você usa
-            </h2>
-          </div>
-          <p className="text-lg text-[rgba(248,250,252,0.80)] leading-relaxed max-w-2xl mx-auto">
-            APIs e webhooks para sincronizar seus dados automaticamente.
+      {/* STATS SECTION */}
+      <section className="relative max-w-6xl mx-auto px-6 py-20">
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { stat: 500, suffix: '+', label: 'Freelancers' },
+            { stat: 15000, suffix: '+', label: 'Propostas Geradas' },
+            { stat: 87, suffix: '%', label: 'Taxa de Aceitação' }
+          ].map((item, i) => (
+            <div key={i} className="p-8 bg-[rgba(194,78,255,0.08)] border border-[rgba(194,78,255,0.15)] rounded-xl text-center">
+              <div className="text-5xl font-bold text-[#c24eff] mb-2">
+                <Counter end={item.stat} />
+                {item.suffix}
+              </div>
+              <p className="text-[rgba(248,250,252,0.8)]">{item.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FEATURES SECTION */}
+      <section className="relative max-w-6xl mx-auto px-6 py-32">
+        <div className="text-center mb-16">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#c24eff] mb-4">RECURSOS</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: '"Sora", sans-serif' }}>
+            Tudo que você precisa
+          </h2>
+          <p className="text-lg text-[rgba(248,250,252,0.75)] max-w-2xl mx-auto">
+            Recursos essenciais para vender mais propostas
           </p>
         </div>
 
-        {/* Integration Logos Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8">
+          {[
+            { title: 'Gerador Automático', desc: 'Crie propostas profissionais em 3 cliques. Templates personalizáveis + editor em tempo real.' },
+            { title: 'Pagamento Integrado', desc: 'Stripe integrado. Cliente aceita e paga direto na proposta. Sem intermediários.' },
+            { title: 'Envio via WhatsApp', desc: 'Compartilhe propostas diretamente no WhatsApp. Rastreie visualizações e interações.' },
+            { title: 'Analytics Real', desc: 'Saiba exatamente quantas propostas foram visualizadas, aceitas ou rejeitadas.' },
+            { title: 'Sincronização CRM', desc: 'Conecte com Zapier, Airtable, HubSpot. Sincronize automaticamente.' },
+            { title: 'Suporte Humanizado', desc: 'Chat com pessoa real. Tempo médio de resposta: 2 horas. Horário brasileiro.' }
+          ].map((feature, i) => (
+            <div key={i} className="p-6 bg-[rgba(194,78,255,0.06)] border border-[rgba(194,78,255,0.12)] rounded-xl hover:border-[rgba(194,78,255,0.3)] transition-all">
+              <h3 className="text-lg font-semibold text-white mb-3">{feature.title}</h3>
+              <p className="text-[rgba(248,250,252,0.75)]">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* INTEGRAÇÕES SECTION */}
+      <section className="relative max-w-6xl mx-auto px-6 py-32">
+        <div className="text-center mb-16">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#c24eff] mb-4">INTEGRAÇÕES</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
+            Funciona com suas ferramentas
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {[
             { name: 'Stripe', icon: <StrifeIcon /> },
             { name: 'Slack', icon: <SlackIcon /> },
@@ -111,224 +157,198 @@ export default function Home() {
             { name: 'GitHub', icon: <GitHubIcon /> },
             { name: 'Discord', icon: <DiscordIcon /> }
           ].map((tool, i) => (
-            <div key={i} className="flex flex-col items-center justify-center p-6 rounded-lg hover:bg-[rgba(194,78,255,0.1)] transition-all cursor-pointer">
-              <div className="text-[#c24eff] mb-3 h-8 w-8 flex items-center justify-center">{tool.icon}</div>
-              <span className="text-sm font-medium text-[#f8fafc]">{tool.name}</span>
+            <div key={i} className="flex flex-col items-center justify-center p-6 rounded-xl bg-[rgba(194,78,255,0.06)] border border-[rgba(194,78,255,0.12)] hover:bg-[rgba(194,78,255,0.12)] transition-all">
+              <div className="text-[#c24eff] mb-3 h-8 w-8">{tool.icon}</div>
+              <span className="text-sm font-medium text-white">{tool.name}</span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
-        <div className="grid gap-8 mb-20">
-          <p className="text-xs font-bold uppercase tracking-widest text-[rgba(194,78,255,0.8)] mb-4">RECURSOS</p>
-          <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Tudo que você precisa para fechar mais contratos
+      {/* PRINCÍPIOS SECTION */}
+      <section className="relative max-w-6xl mx-auto px-6 py-32">
+        <div className="text-center mb-16">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#c24eff] mb-4">CONSTRUÍDO COM</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
+            Princípios que importam
           </h2>
-          <p className="text-lg text-[rgba(248,250,252,0.80)] leading-relaxed max-w-2xl mx-auto">
-            Recursos desenvolvidos especificamente para freelancers venderem mais.
-          </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-6">
           {[
-            { title: 'Gerador de Propostas', desc: '5 templates profissionais + texto customizável em tempo real' },
-            { title: 'Pagamento Integrado', desc: 'Aceite pagamentos direto na proposta com Stripe' },
-            { title: 'Distribuição Via WhatsApp', desc: 'Envie propostas pelo WhatsApp c/ link rastreável' },
-            { title: 'Sincronização CRM', desc: 'Conecte com HubSpot, Airtable, Zapier automaticamente' },
-            { title: 'Geração Rápida', desc: 'Crie propostas profissionais em menos de 2 minutos' },
-            { title: 'Analytics Detalhado', desc: 'Rastreie visualizações, aceitações e taxas de conversão' }
-          ].map((feature, i) => (
-            <div key={i} className="p-8 rounded-xl bg-gradient-to-br from-[rgba(194,78,255,0.06)] to-[rgba(255,0,128,0.03)] border border-[rgba(194,78,255,0.15)] hover:border-[rgba(194,78,255,0.4)] transition-all">
-              <h3 className="text-lg font-bold text-white mb-3 text-left">{feature.title}</h3>
-              <p className="text-[rgba(248,250,252,0.72)] text-left text-sm leading-relaxed">{feature.desc}</p>
+            { icon: <BrainIcon />, title: 'Transparência', desc: 'Sem custos ocultos. Você sabe exatamente o que paga.' },
+            { icon: <ShieldIcon />, title: 'Privacidade LGPD', desc: 'Seus dados criptografados. Conformidade total.' },
+            { icon: <ChartIcon />, title: 'Dados Reais', desc: 'Sem números fake. Métricas verificáveis.' },
+            { icon: <HeadsetIcon />, title: 'Suporte Real', desc: 'Pessoa real. Resposta em até 2 horas.' }
+          ].map((principle, i) => (
+            <div key={i} className="p-6 bg-[rgba(194,78,255,0.06)] border border-[rgba(194,78,255,0.12)] rounded-xl text-center">
+              <div className="text-[#c24eff] mb-4 flex justify-center">{principle.icon}</div>
+              <h3 className="text-lg font-semibold text-white mb-2">{principle.title}</h3>
+              <p className="text-[rgba(248,250,252,0.75)] text-sm">{principle.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Results Section */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
-        <div className="grid gap-8 mb-16">
-          <p className="text-xs font-bold uppercase tracking-widest text-[rgba(194,78,255,0.8)] mb-4">RESULTADOS</p>
-          <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Números que falam
+      {/* PRICING SECTION */}
+      <section className="relative max-w-6xl mx-auto px-6 py-32">
+        <div className="text-center mb-16">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#c24eff] mb-4">PREÇOS</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
+            Planos simples e justos
           </h2>
         </div>
 
-        {/* Metrics Grid */}
-        <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {[
-            { stat: 500, suffix: '+', desc: 'Freelancers utilizando' },
-            { stat: 15000, suffix: '+', desc: 'Propostas geradas' },
-            { stat: 87, suffix: '%', desc: 'Taxa de aceitação média' }
-          ].map((metric, i) => (
-            <div key={i} className="p-8 rounded-lg bg-transparent border-b-2 border-[rgba(194,78,255,0.3)] hover:border-[rgba(194,78,255,0.6)] transition-all">
-              <strong className="block text-6xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-[#c24eff] to-[#ff0080]">
-                <Counter end={metric.stat} />{metric.suffix}
-              </strong>
-              <p className="text-lg text-[rgba(248,250,252,0.82)]">{metric.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
-        <div className="grid gap-8 mb-16">
-          <p className="text-xs font-bold uppercase tracking-widest text-[rgba(194,78,255,0.8)] mb-4">PREÇOS</p>
-          <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Planos para todo freelancer
-          </h2>
-          <p className="text-lg text-[rgba(248,250,252,0.80)] leading-relaxed max-w-2xl mx-auto">
-            Sem compromisso. Cancele quando quiser.
-          </p>
-        </div>
-
-        {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[
-            { 
-              name: 'Starter', 
-              price: 'Grátis', 
-              features: ['3 propostas/mês', 'Templates básicos', 'Envio por email', 'Suporte por email'],
-              cta: 'Começar'
+            {
+              name: 'Starter',
+              price: 'Grátis',
+              desc: 'Teste sem compromisso',
+              features: ['3 propostas/mês', 'Templates básicos', 'Envio por email', 'Suporte por email']
             },
-            { 
-              name: 'Professional', 
-              price: 'R$ 49', 
+            {
+              name: 'Professional',
+              price: 'R$ 49',
               period: '/mês',
-              features: ['Propostas ilimitadas', '10 templates premium', 'Envio WhatsApp', 'Integração Stripe', 'Analytics básicos', 'Suporte prioritário'],
-              cta: 'Testar 7 dias',
-              popular: true
+              desc: 'Mais popular',
+              features: ['Propostas ilimitadas', '10 templates', 'Envio WhatsApp', 'Integração Stripe', 'Analytics', 'Suporte prioritário'],
+              highlight: true
             },
-            { 
-              name: 'Business', 
-              price: 'R$ 199', 
+            {
+              name: 'Business',
+              price: 'R$ 199',
               period: '/mês',
-              features: ['Tudo do Professional +', 'API de integração', 'Custom branding', 'Múltiplos usuários', 'Analytics avançados', 'Suporte dedicado 24/7'],
-              cta: 'Contato'
+              desc: 'Para equipes',
+              features: ['Tudo do Professional', 'API de integração', 'Custom branding', 'Múltiplos usuários', 'Analytics avançados', 'Suporte dedicado 24/7']
             }
           ].map((plan, i) => (
-            <div key={i} className={`p-8 rounded-2xl border-2 transition-all ${
-              plan.popular 
-                ? 'border-[rgba(194,78,255,0.6)] bg-gradient-to-br from-[rgba(194,78,255,0.12)] to-[rgba(255,0,128,0.06)] scale-105 shadow-2xl shadow-[#c24eff]/30' 
-                : 'border-[rgba(194,78,255,0.25)] bg-gradient-to-br from-[rgba(194,78,255,0.06)] to-[rgba(255,0,128,0.03)]'
-            }`}>
-              {plan.popular && <div className="text-xs font-bold text-[#c24eff] mb-4 uppercase">Mais Popular</div>}
-              <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+            <div
+              key={i}
+              className={`p-8 rounded-xl border transition-all ${
+                plan.highlight
+                  ? 'border-[#c24eff] bg-[rgba(194,78,255,0.15)] scale-105'
+                  : 'border-[rgba(194,78,255,0.15)] bg-[rgba(194,78,255,0.06)] hover:border-[rgba(194,78,255,0.3)]'
+              }`}
+            >
+              {plan.highlight && <div className="text-xs font-bold text-[#c24eff] uppercase mb-4">Mais Popular</div>}
+              <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
+              <p className="text-sm text-[rgba(248,250,252,0.7)] mb-4">{plan.desc}</p>
               <div className="mb-6">
-                <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#c24eff] to-[#ff0080]">{plan.price}</span>
-                {plan.period && <span className="text-[rgba(248,250,252,0.72)]">{plan.period}</span>}
+                <span className="text-4xl font-bold text-[#c24eff]">{plan.price}</span>
+                {plan.period && <span className="text-[rgba(248,250,252,0.7)]">{plan.period}</span>}
               </div>
-              <ul className="text-left mb-8 space-y-3">
+              <ul className="space-y-2 mb-8">
                 {plan.features.map((feature, j) => (
-                  <li key={j} className="text-[rgba(248,250,252,0.72)] flex items-center gap-3 text-sm">
-                    <span className="text-[#c24eff] font-bold">•</span> {feature}
+                  <li key={j} className="text-sm text-[rgba(248,250,252,0.8)] flex items-center gap-2">
+                    <span className="text-[#c24eff]">•</span> {feature}
                   </li>
                 ))}
               </ul>
-              <button className={`w-full min-h-[56px] font-bold rounded-full transition-all text-sm ${
-                plan.popular
-                  ? 'bg-gradient-to-r from-[#c24eff] via-[#ff00ff] to-[#ff0080] text-white hover:shadow-lg'
-                  : 'border-2 border-[#c24eff] text-[#c24eff] hover:bg-[rgba(194,78,255,0.08)]'
-              }`}>
-                {plan.cta}
+              <button
+                className={`w-full py-3 font-semibold rounded-lg transition-all ${
+                  plan.highlight
+                    ? 'bg-[#c24eff] text-white hover:bg-[#b242e6]'
+                    : 'border border-[#c24eff] text-[#c24eff] hover:bg-[rgba(194,78,255,0.1)]'
+                }`}
+              >
+                {plan.price === 'Grátis' ? 'Começar' : 'Testar 7 dias'}
               </button>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="relative max-w-4xl mx-auto px-6 py-32 mt-32 text-center">
-        <div className="p-12 rounded-2xl bg-gradient-to-br from-[rgba(194,78,255,0.1)] to-[rgba(255,0,128,0.05)] border-2 border-[rgba(194,78,255,0.25)]">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Dicas para vender mais
+      {/* FAQ SECTION */}
+      <section className="relative max-w-6xl mx-auto px-6 py-32">
+        <div className="text-center mb-16">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#c24eff] mb-4">DÚVIDAS</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
+            Perguntas frequentes
           </h2>
-          <p className="text-lg text-[rgba(248,250,252,0.80)] mb-8 max-w-2xl mx-auto">
-            Receba estratégias e insights semanais para aumentar suas taxas de fechamento e valor de contrato.
+        </div>
+
+        <Accordion
+          items={[
+            {
+              title: 'Como funciona o período de teste?',
+              content: 'Você começa com o plano Starter grátis (3 propostas/mês). Sem cartão de crédito. Cancele quando quiser.'
+            },
+            {
+              title: 'Posso integrar com minhas ferramentas?',
+              content: 'Sim! HighFlow integra com Zapier, permitindo conectar com 1000+ apps (HubSpot, Airtable, Make, etc). Também temos API nativa.'
+            },
+            {
+              title: 'Como é o suporte?',
+              content: 'Suporte 100% humano via chat. Tempo médio de resposta: 2 horas. Para problemas críticos: 30 minutos. Horário: 9h-18h (horário de Brasília).'
+            },
+            {
+              title: 'Meus dados estão seguros?',
+              content: 'Sim. Dados criptografados com AES-256. Conformidade LGPD. Você pode pedir cópia ou exclusão dos dados a qualquer momento.'
+            },
+            {
+              title: 'Posso customizar as propostas?',
+              content: 'Total. Seu logo, cores, termos, assinatura. Você controla 100%. Templates também são customizáveis.'
+            },
+            {
+              title: 'E se eu cancelar?',
+              content: 'Sem penalidade. Seus dados ficam 7 dias. Depois são deletados. Simples assim.'
+            }
+          ]}
+        />
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="relative max-w-4xl mx-auto px-6 py-32 text-center">
+        <div className="space-y-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
+            Pronto para vender mais?
+          </h2>
+          <p className="text-lg text-[rgba(248,250,252,0.75)] max-w-2xl mx-auto">
+            Centenas de freelancers já estão automatizando suas propostas com HighFlow. Você é o(a) próximo(a)?
           </p>
-          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder="seu@email.com" 
-              className="flex-1 px-6 py-4 rounded-full bg-[rgba(248,250,252,0.05)] border border-[rgba(194,78,255,0.3)] text-white placeholder-[rgba(248,250,252,0.5)] focus:outline-none focus:border-[#c24eff] transition"
-            />
-            <button 
-              type="submit"
-              className="px-8 py-4 bg-gradient-to-r from-[#c24eff] via-[#ff00ff] to-[#ff0080] text-white font-bold rounded-full hover:shadow-lg transition-all whitespace-nowrap text-sm"
-            >
-              Inscrever
-            </button>
-          </form>
+          <button className="px-12 py-4 bg-[#c24eff] text-white font-semibold rounded-lg hover:bg-[#b242e6] transition-all text-lg">
+            Começar Grátis Agora
+          </button>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative max-w-6xl mx-auto px-6 py-40 md:py-48 mt-32 text-center">
-        <p className="text-sm font-bold uppercase tracking-widest text-[#c24eff] mb-6">🚀 Próximo passo</p>
-        <h2 className="text-6xl md:text-7xl font-bold mb-10 leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-          Pronto para transformar sua operação?
-        </h2>
-        <p className="text-xl text-[rgba(248,250,252,0.84)] mb-12 max-w-3xl mx-auto leading-relaxed">
-          Entramos no seu contexto, definimos prioridades e colocamos sua execução em ritmo de crescimento. Comece grátis, sem cartão de crédito.
-        </p>
-        <button className="inline-flex items-center justify-center min-h-[64px] px-12 py-4 bg-gradient-to-r from-[#c24eff] via-[#ff00ff] to-[#ff0080] text-white font-bold rounded-full hover:translate-y-[-3px] transition-all shadow-2xl hover:shadow-3xl text-lg hover:shadow-[#c24eff]/50">
-          Agendar diagnóstico →
-        </button>
-      </section>
-
-      {/* Footer */}
-      <footer className="relative max-w-6xl mx-auto px-6 py-20 mt-40 pt-24 border-t border-[rgba(194,78,255,0.1)]">
-        <div className="grid md:grid-cols-5 gap-16 mb-12">
-          <div>
-            <p className="font-bold text-white text-lg mb-4">HighFlow</p>
-            <p className="text-sm text-[rgba(248,250,252,0.68)] leading-relaxed">Automação de propostas para freelancers que não aceitam mediocre.</p>
-          </div>
-          <nav className="flex flex-col gap-3">
-            <p className="font-bold text-white text-sm mb-2">Produto</p>
-            {[
-              { label: 'Home', href: '/' },
-              { label: 'Preços', href: '/pricing' },
-              { label: 'Sobre Nós', href: '/about' },
-              { label: 'Suporte', href: '/contact' }
-            ].map((link) => (
-              <a key={link.href} href={link.href} className="text-sm text-[rgba(248,250,252,0.72)] hover:text-[#c24eff] transition font-medium">
-                {link.label}
+      {/* FOOTER */}
+      <footer className="relative border-t border-[rgba(194,78,255,0.1)] bg-[rgba(194,78,255,0.03)]">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div className="grid md:grid-cols-4 gap-16 mb-12">
+            <div>
+              <p className="font-bold text-white text-lg mb-2">HighFlow</p>
+              <p className="text-sm text-[rgba(248,250,252,0.7)]">Propostas profissionais em 2 minutos.</p>
+            </div>
+            <nav className="flex flex-col gap-3">
+              <p className="font-bold text-white text-sm">Produto</p>
+              {[{ label: 'Home', href: '/' }, { label: 'Preços', href: '/pricing' }, { label: 'Sobre', href: '/about' }].map((link) => (
+                <a key={link.href} href={link.href} className="text-sm text-[rgba(248,250,252,0.7)] hover:text-[#c24eff] transition">
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+            <div>
+              <p className="font-bold text-white text-sm mb-3">Contato</p>
+              <a href="mailto:suporte@highflow.dev" className="text-sm text-[#c24eff] hover:text-white transition block mb-1">
+                suporte@highflow.dev
               </a>
-            ))}
-          </nav>
-          <div>
-            <p className="font-bold text-white text-sm mb-4">Contato</p>
-            <a href="mailto:suporte@highflow.dev" className="text-sm text-[#c24eff] hover:text-white transition block mb-2 font-medium">
-              suporte@highflow.dev
-            </a>
-            <span className="text-sm text-[rgba(248,250,252,0.68)]">(11) 99999-0000</span>
-            <p className="text-xs text-[rgba(248,250,252,0.58)] mt-4">📍 São Paulo, BR</p>
-          </div>
-          <div>
-            <p className="font-bold text-white text-sm mb-4">Legal</p>
-            <a href="/terms" className="text-sm text-[rgba(248,250,252,0.72)] hover:text-[#c24eff] transition block mb-2">
-              Termos de Uso
-            </a>
-            <a href="/privacy" className="text-sm text-[rgba(248,250,252,0.72)] hover:text-[#c24eff] transition block">
-              Privacidade
-            </a>
-          </div>
-          <div>
-            <p className="font-bold text-white text-sm mb-4">Social</p>
-            {['Instagram', 'LinkedIn', 'Twitter', 'TikTok'].map((social, i) => (
-              <a key={i} href="#" className="text-sm text-[rgba(248,250,252,0.72)] hover:text-[#c24eff] transition block font-medium">
-                {social}
+              <p className="text-sm text-[rgba(248,250,252,0.7)]">(11) 99999-0000</p>
+            </div>
+            <div>
+              <p className="font-bold text-white text-sm mb-3">Legal</p>
+              <a href="/terms" className="text-sm text-[rgba(248,250,252,0.7)] hover:text-[#c24eff] transition block mb-2">
+                Termos de Uso
               </a>
-            ))}
+              <a href="/privacy" className="text-sm text-[rgba(248,250,252,0.7)] hover:text-[#c24eff] transition block">
+                Privacidade
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="pt-12 border-t border-[rgba(194,78,255,0.1)] text-center text-xs text-[rgba(248,250,252,0.58)]">
-          <p>© 2026 HighFlow. Desenvolvido com ❤️ para freelancers brasileiros.</p>
+          <div className="pt-8 border-t border-[rgba(194,78,255,0.1)] text-center text-xs text-[rgba(248,250,252,0.6)]">
+            <p>© 2026 HighFlow. Feito com ❤️ para freelancers brasileiros.</p>
+          </div>
         </div>
       </footer>
     </main>
