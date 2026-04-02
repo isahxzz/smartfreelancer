@@ -49,6 +49,26 @@ export default function AboutPage() {
         </div>
 
         <div className="mb-20">
+          <h2 className="text-4xl font-bold text-white mb-6 text-center">Nossa Missão</h2>
+          <p className="text-lg text-[rgba(248,250,252,0.80)] mb-12 text-center max-w-3xl mx-auto">
+            Acreditamos que freelancers merecem ferramentas honestas, suporte real e qualidade garantida.
+          </p>
+          <div className="grid md:grid-cols-4 gap-6 mb-16">
+            {[
+              { title: 'Transparência', desc: 'Sem custos ocultos. Você sabe exatamente o que paga e como funciona.' },
+              { title: 'Suporte Humano', desc: 'Chat com pessoa real. Resposta em até 2 horas durante horário comercial BR.' },
+              { title: 'Segurança', desc: 'Seus dados criptografados. Conformidade LGPD e proteção de privacidade garantida.' },
+              { title: 'Dados Reais', desc: 'Sem números fake. Estatísticas verificáveis e métricas honestas do negócio.' }
+            ].map((principle, i) => (
+              <div key={i} className="p-8 rounded-xl bg-gradient-to-br from-[rgba(194,78,255,0.08)] to-[rgba(255,0,128,0.05)] border border-[rgba(194,78,255,0.2)] hover:border-[rgba(194,78,255,0.4)] transition-all">
+                <h3 className="text-lg font-bold text-white mb-2">{principle.title}</h3>
+                <p className="text-[rgba(248,250,252,0.72)] text-sm leading-relaxed">{principle.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-20">
           <h2 className="text-4xl font-bold text-white mb-12 text-center">Por que HighFlow?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[

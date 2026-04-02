@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
-import { BrainIcon, ShieldIcon, ChartIcon, HeadsetIcon, StrifeIcon, SlackIcon, GmailIcon, ZapierIcon, AirtableIcon, NotionIcon } from './components/Icons';
+import { BrainIcon, ShieldIcon, ChartIcon, HeadsetIcon, StrifeIcon, SlackIcon, GmailIcon, ZapierIcon, AirtableIcon, NotionIcon, DiscordIcon, GitHubIcon } from './components/Icons';
 
 // Componente de Counter Animado
 function Counter({ end, duration = 2 }: { end: number; duration?: number }) {
@@ -57,15 +57,17 @@ export default function Home() {
           <div className="flex flex-col items-center gap-6 mb-16">
             <div className="flex items-center gap-3 justify-center">
               <div className="flex -space-x-3">
-                {['👤', '👨', '👩', '🧑', '👨'].map((avatar, i) => (
-                  <div key={i} className="w-12 h-12 rounded-full bg-gradient-to-br from-[#c24eff] to-[#ff0080] flex items-center justify-center text-xl border-2 border-[#050505]">
-                    {avatar}
-                  </div>
+                {[1,2,3,4,5].map((i) => (
+                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c24eff] to-[#ff0080] border-2 border-[#050505]"></div>
                 ))}
               </div>
               <div className="text-left">
-                <div className="flex gap-1">⭐⭐⭐⭐⭐</div>
-                <p className="text-xs text-[rgba(248,250,252,0.72)]"><strong>4.9/5</strong> - 200+ reviews</p>
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-500">★</span>
+                  ))}
+                </div>
+                <p className="text-xs text-[rgba(248,250,252,0.72)]"><strong>4.9/5</strong> - 500+ freelancers</p>
               </div>
             </div>
           </div>
@@ -80,12 +82,8 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-3 justify-center text-xs font-semibold text-[#f8fafc]">
-            <span className="px-5 py-3 border border-[#c24eff]/40 rounded-full bg-[rgba(194,78,255,0.12)]">✓ Sem cartão de crédito</span>
-            <span className="px-5 py-3 border border-[#c24eff]/40 rounded-full bg-[rgba(194,78,255,0.12)]">✓ Cancelamento imediato</span>
-            <span className="px-5 py-3 border border-[#c24eff]/40 rounded-full bg-[rgba(194,78,255,0.12)]">✓ Suporte 24h</span>
-          </div>
+          {/* Spacing */}
+          <div className="h-12"></div>
         </div>
       </section>
 
@@ -93,58 +91,29 @@ export default function Home() {
       <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
         <div className="grid gap-8 mb-16">
           <div>
-            <p className="text-sm font-bold uppercase tracking-widest text-[#c24eff] mb-4">🔗 Integrações</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-[rgba(194,78,255,0.8)] mb-4">INTEGRAÇÕES</p>
             <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-              Conecta com ferramentas que você já usa
+              Conecta com as ferramentas que você usa
             </h2>
           </div>
           <p className="text-lg text-[rgba(248,250,252,0.80)] leading-relaxed max-w-2xl mx-auto">
-            APIs, dados e automações em um fluxo único. Acelera time de vendas, operação e finances sem retrabalho.
+            APIs e webhooks para sincronizar seus dados automaticamente.
           </p>
         </div>
 
         {/* Integration Logos Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {[
             { name: 'Stripe', icon: <StrifeIcon /> },
             { name: 'Slack', icon: <SlackIcon /> },
             { name: 'Gmail', icon: <GmailIcon /> },
             { name: 'Zapier', icon: <ZapierIcon /> },
-            { name: 'Airtable', icon: <AirtableIcon /> },
-            { name: 'Notion', icon: <NotionIcon /> }
+            { name: 'GitHub', icon: <GitHubIcon /> },
+            { name: 'Discord', icon: <DiscordIcon /> }
           ].map((tool, i) => (
-            <div key={i} className="flex flex-col items-center justify-center p-6 rounded-lg bg-transparent hover:bg-[rgba(194,78,255,0.12)] transition-all cursor-pointer">
+            <div key={i} className="flex flex-col items-center justify-center p-6 rounded-lg hover:bg-[rgba(194,78,255,0.1)] transition-all cursor-pointer">
               <div className="text-[#c24eff] mb-3 h-8 w-8 flex items-center justify-center">{tool.icon}</div>
-              <span className="text-sm font-semibold text-[#f8fafc]">{tool.name}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Princípios Section - Trust Signals */}
-      <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
-        <div className="grid gap-8 mb-20">
-          <p className="text-sm font-bold uppercase tracking-widest text-[#c24eff]">💎 Nossa Missão</p>
-          <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Construído com princípios
-          </h2>
-          <p className="text-lg text-[rgba(248,250,252,0.80)] leading-relaxed max-w-2xl mx-auto">
-            Acreditamos que freelancers merecem ferramentas honestas, suporte real e qualidade garantida.
-          </p>
-        </div>
-
-        {/* Princípios Grid */}
-        <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {[
-            { icon: <BrainIcon />, title: 'Transparência', desc: 'Sem custos ocultos. Você sabe exatamente o que paga.' },
-            { icon: <ShieldIcon />, title: 'Suporte Humano', desc: 'Chat com pessoa real. Resposta em até 2 horas.' },
-            { icon: <ChartIcon />, title: 'Segurança', desc: 'Seus dados criptografados. Conformidade LGPD.' },
-            { icon: <HeadsetIcon />, title: 'Dados Reais', desc: 'Sem números fake. Estatísticas verificáveis.' }
-          ].map((principle, i) => (
-            <div key={i} className="p-8 rounded-xl bg-gradient-to-br from-[rgba(194,78,255,0.08)] to-[rgba(255,0,128,0.05)] border border-[rgba(194,78,255,0.2)] hover:border-[rgba(255,0,128,0.5)] transition-all">
-              <div className="text-[#c24eff] mb-4">{principle.icon}</div>
-              <h3 className="text-xl font-bold text-white mb-2">{principle.title}</h3>
-              <p className="text-[rgba(248,250,252,0.72)]">{principle.desc}</p>
+              <span className="text-sm font-medium text-[#f8fafc]">{tool.name}</span>
             </div>
           ))}
         </div>
@@ -153,29 +122,28 @@ export default function Home() {
       {/* Features Section */}
       <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
         <div className="grid gap-8 mb-20">
-          <p className="text-sm font-bold uppercase tracking-widest text-[#c24eff]">⚡ Como Funciona</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[rgba(194,78,255,0.8)] mb-4">RECURSOS</p>
           <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Tudo que você precisa para vender mais
+            Tudo que você precisa para fechar mais contratos
           </h2>
           <p className="text-lg text-[rgba(248,250,252,0.80)] leading-relaxed max-w-2xl mx-auto">
-            Recursos poderosos pensados para simplificar seu processo de venda.
+            Recursos desenvolvidos especificamente para freelancers venderem mais.
           </p>
         </div>
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
-            { icon: '📄', title: 'Gerador de Propostas', desc: '5 templates prontos + customização em tempo real' },
-            { icon: '💰', title: 'Integração Stripe', desc: 'Receba pagamentos na proposta com 1 clique' },
-            { icon: '📱', title: 'Envio WhatsApp', desc: 'Compartilhe propostas direto na mensagem do cliente' },
-            { icon: '🔄', title: 'Sincronização CRM', desc: 'Conecta com Hubspot, Airtable, Zapier automaticamente' },
-            { icon: '⏱️', title: 'Geração em 2 Min', desc: '3 cliques e sua proposta está pronta' },
-            { icon: '📊', title: 'Analytics', desc: 'Veja quantas propostas foram visualizadas/aceitas' }
+            { title: 'Gerador de Propostas', desc: '5 templates profissionais + texto customizável em tempo real' },
+            { title: 'Pagamento Integrado', desc: 'Aceite pagamentos direto na proposta com Stripe' },
+            { title: 'Distribuição Via WhatsApp', desc: 'Envie propostas pelo WhatsApp c/ link rastreável' },
+            { title: 'Sincronização CRM', desc: 'Conecte com HubSpot, Airtable, Zapier automaticamente' },
+            { title: 'Geração Rápida', desc: 'Crie propostas profissionais em menos de 2 minutos' },
+            { title: 'Analytics Detalhado', desc: 'Rastreie visualizações, aceitações e taxas de conversão' }
           ].map((feature, i) => (
-            <div key={i} className="p-8 rounded-xl bg-gradient-to-br from-[rgba(194,78,255,0.08)] to-[rgba(255,0,128,0.05)] border border-[rgba(194,78,255,0.2)] hover:border-[rgba(255,0,128,0.5)] transition-all">
-              <div className="text-5xl mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-              <p className="text-[rgba(248,250,252,0.72)]">{feature.desc}</p>
+            <div key={i} className="p-8 rounded-xl bg-gradient-to-br from-[rgba(194,78,255,0.06)] to-[rgba(255,0,128,0.03)] border border-[rgba(194,78,255,0.15)] hover:border-[rgba(194,78,255,0.4)] transition-all">
+              <h3 className="text-lg font-bold text-white mb-3 text-left">{feature.title}</h3>
+              <p className="text-[rgba(248,250,252,0.72)] text-left text-sm leading-relaxed">{feature.desc}</p>
             </div>
           ))}
         </div>
@@ -184,21 +152,21 @@ export default function Home() {
       {/* Results Section */}
       <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
         <div className="grid gap-8 mb-16">
-          <p className="text-sm font-bold uppercase tracking-widest text-[#c24eff]">📊 Resultados</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[rgba(194,78,255,0.8)] mb-4">RESULTADOS</p>
           <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Números que falam por si
+            Números que falam
           </h2>
         </div>
 
         {/* Metrics Grid */}
         <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {[
-            { stat: 500, suffix: '+', desc: 'Freelancers ativos' },
+            { stat: 500, suffix: '+', desc: 'Freelancers utilizando' },
             { stat: 15000, suffix: '+', desc: 'Propostas geradas' },
-            { stat: 87, suffix: '%', desc: 'Taxa de aceitação' }
+            { stat: 87, suffix: '%', desc: 'Taxa de aceitação média' }
           ].map((metric, i) => (
-            <div key={i} className="p-8 rounded-lg bg-transparent border-b-2 border-[rgba(194,78,255,0.4)] hover:border-[rgba(255,0,128,0.7)] transition-all">
-              <strong className="block text-6xl font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-[#c24eff] to-[#ff0080]">
+            <div key={i} className="p-8 rounded-lg bg-transparent border-b-2 border-[rgba(194,78,255,0.3)] hover:border-[rgba(194,78,255,0.6)] transition-all">
+              <strong className="block text-6xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-[#c24eff] to-[#ff0080]">
                 <Counter end={metric.stat} />{metric.suffix}
               </strong>
               <p className="text-lg text-[rgba(248,250,252,0.82)]">{metric.desc}</p>
@@ -210,12 +178,12 @@ export default function Home() {
       {/* Pricing Section */}
       <section className="relative max-w-6xl mx-auto px-6 py-32 mt-32 text-center">
         <div className="grid gap-8 mb-16">
-          <p className="text-sm font-bold uppercase tracking-widest text-[#c24eff]">💳 Preços</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[rgba(194,78,255,0.8)] mb-4">PREÇOS</p>
           <h2 className="text-5xl md:text-6xl font-bold leading-tight text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Plano para todo freelancer
+            Planos para todo freelancer
           </h2>
           <p className="text-lg text-[rgba(248,250,252,0.80)] leading-relaxed max-w-2xl mx-auto">
-            Sem compromisso. Cancele quando quiser. Comece grátis hoje.
+            Sem compromisso. Cancele quando quiser.
           </p>
         </div>
 
@@ -223,13 +191,13 @@ export default function Home() {
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
             { 
-              name: 'Grátis', 
-              price: 'R$ 0', 
-              features: ['3 propostas/mês', 'Templates básicos', 'Envio por email', 'Chat de suporte'],
-              cta: 'Começar agora'
+              name: 'Starter', 
+              price: 'Grátis', 
+              features: ['3 propostas/mês', 'Templates básicos', 'Envio por email', 'Suporte por email'],
+              cta: 'Começar'
             },
             { 
-              name: 'Pro', 
+              name: 'Professional', 
               price: 'R$ 49', 
               period: '/mês',
               features: ['Propostas ilimitadas', '10 templates premium', 'Envio WhatsApp', 'Integração Stripe', 'Analytics básicos', 'Suporte prioritário'],
@@ -237,19 +205,19 @@ export default function Home() {
               popular: true
             },
             { 
-              name: 'Empresa', 
+              name: 'Business', 
               price: 'R$ 199', 
               period: '/mês',
-              features: ['Tudo do Pro +', 'API de integração', 'Custom branding', 'Múltiplos usuários', 'Analytics avançados', 'Suporte dedicado'],
+              features: ['Tudo do Professional +', 'API de integração', 'Custom branding', 'Múltiplos usuários', 'Analytics avançados', 'Suporte dedicado 24/7'],
               cta: 'Contato'
             }
           ].map((plan, i) => (
             <div key={i} className={`p-8 rounded-2xl border-2 transition-all ${
               plan.popular 
-                ? 'border-[rgba(255,0,128,0.6)] bg-gradient-to-br from-[rgba(194,78,255,0.15)] to-[rgba(255,0,128,0.08)] scale-105 shadow-2xl shadow-[#c24eff]/30' 
-                : 'border-[rgba(194,78,255,0.3)] bg-gradient-to-br from-[rgba(194,78,255,0.08)] to-[rgba(255,0,128,0.05)]'
+                ? 'border-[rgba(194,78,255,0.6)] bg-gradient-to-br from-[rgba(194,78,255,0.12)] to-[rgba(255,0,128,0.06)] scale-105 shadow-2xl shadow-[#c24eff]/30' 
+                : 'border-[rgba(194,78,255,0.25)] bg-gradient-to-br from-[rgba(194,78,255,0.06)] to-[rgba(255,0,128,0.03)]'
             }`}>
-              {plan.popular && <div className="text-xs font-bold text-[#c24eff] mb-4">⭐ MAIS POPULAR</div>}
+              {plan.popular && <div className="text-xs font-bold text-[#c24eff] mb-4 uppercase">Mais Popular</div>}
               <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
               <div className="mb-6">
                 <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#c24eff] to-[#ff0080]">{plan.price}</span>
@@ -257,15 +225,15 @@ export default function Home() {
               </div>
               <ul className="text-left mb-8 space-y-3">
                 {plan.features.map((feature, j) => (
-                  <li key={j} className="text-[rgba(248,250,252,0.72)] flex items-center gap-3">
-                    <span className="text-[#c24eff]">✓</span> {feature}
+                  <li key={j} className="text-[rgba(248,250,252,0.72)] flex items-center gap-3 text-sm">
+                    <span className="text-[#c24eff] font-bold">•</span> {feature}
                   </li>
                 ))}
               </ul>
-              <button className={`w-full min-h-[56px] font-bold rounded-full transition-all ${
+              <button className={`w-full min-h-[56px] font-bold rounded-full transition-all text-sm ${
                 plan.popular
                   ? 'bg-gradient-to-r from-[#c24eff] via-[#ff00ff] to-[#ff0080] text-white hover:shadow-lg'
-                  : 'border-2 border-[#c24eff] text-[#c24eff] hover:bg-[rgba(194,78,255,0.1)]'
+                  : 'border-2 border-[#c24eff] text-[#c24eff] hover:bg-[rgba(194,78,255,0.08)]'
               }`}>
                 {plan.cta}
               </button>
@@ -276,22 +244,22 @@ export default function Home() {
 
       {/* Newsletter Section */}
       <section className="relative max-w-4xl mx-auto px-6 py-32 mt-32 text-center">
-        <div className="p-12 rounded-2xl bg-gradient-to-br from-[rgba(194,78,255,0.12)] to-[rgba(255,0,128,0.08)] border-2 border-[rgba(194,78,255,0.3)]">
+        <div className="p-12 rounded-2xl bg-gradient-to-br from-[rgba(194,78,255,0.1)] to-[rgba(255,0,128,0.05)] border-2 border-[rgba(194,78,255,0.25)]">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white" style={{ fontFamily: '"Sora", sans-serif' }}>
-            Dicas gratuitas toda semana
+            Dicas para vender mais
           </h2>
           <p className="text-lg text-[rgba(248,250,252,0.80)] mb-8 max-w-2xl mx-auto">
-            Receba 1 email por semana com estratégias para vender mais propostas e fechar contratos maiores. Zero spam, prometo.
+            Receba estratégias e insights semanais para aumentar suas taxas de fechamento e valor de contrato.
           </p>
           <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input 
               type="email" 
               placeholder="seu@email.com" 
-              className="flex-1 px-6 py-4 rounded-full bg-[rgba(248,250,252,0.05)] border border-[rgba(194,78,255,0.3)] text-white placeholder-[rgba(248,250,252,0.5)] focus:outline-none focus:border-[#c24eff]"
+              className="flex-1 px-6 py-4 rounded-full bg-[rgba(248,250,252,0.05)] border border-[rgba(194,78,255,0.3)] text-white placeholder-[rgba(248,250,252,0.5)] focus:outline-none focus:border-[#c24eff] transition"
             />
             <button 
               type="submit"
-              className="px-8 py-4 bg-gradient-to-r from-[#c24eff] via-[#ff00ff] to-[#ff0080] text-white font-bold rounded-full hover:shadow-lg transition-all whitespace-nowrap"
+              className="px-8 py-4 bg-gradient-to-r from-[#c24eff] via-[#ff00ff] to-[#ff0080] text-white font-bold rounded-full hover:shadow-lg transition-all whitespace-nowrap text-sm"
             >
               Inscrever
             </button>
